@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>BoardMeet</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+  <header>
+    <div class="header-container">
+      <h4 id = 'name' class = "username"></h4>
+      <h1 class="center">BOARDMEET</h1>
+      <button type="submit" class="logout btn"><a href="/login">Logout</a></button>
+    </div>
+  </header>
+
+  <main>
+    <div class="main">
+      <div class="left-section">
+        <h1>Video Chat</h1>
+        <div>
+          <h2>Create Room</h2>
+          <form action = "/call" method = "GET">
+            <button type = "submit" class="btn">Create</button>
+          </form>
+        </div>
+        <div>
+          <h2>Join Room</h2>
+          <form action = "/joincall" method = "POST">
+            <div>
+              <input type = "text" id = "code" name = "code" class="meeting-id-input" placeholder="Enter room code" required>
+            </div>
+            <button type = "submit" class="btn">Join</button>
+          </form>
+        </div>
+      </div>
+      <div class="right-section">
+        <h1>Whiteboard</h1>
+        <div>
+          <h2>Create Board</h2>
+          <form action = "/whiteboard" method = "GET">
+            <button type = "submit" class="btn">Create</button>
+          </form>
+        </div>
+        <div>
+          <h2>Join Room</h2>
+          <form action = "/joinboard" method = "POST">
+          <div>
+            <input type = "text" id = "code" name = "code" class="meeting-id-input" placeholder="Enter room code" required>
+          </div>
+          <button type = "submit" class="btn">Join</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </main>
+</body>
+<script type="text/javascript">
+  document.getElementById('name').innerText = "<%=name%>";
+</script>
+</html>

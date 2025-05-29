@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', sans-serif !important;
+  }
+  .content-container{
+    margin-left:10px;
+  }
+  .header-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: rgb(146, 69, 172);
+    color: white;
+  }
+  
+  .center {
+    text-align: center;
+    margin-left: auto;
+  }
+  
+  .logout {
+    margin-left: auto;
+  }
+  
+  main {
+    display: flex;
+    height: 80vh;
+  } 
+  .space{
+    padding-bottom: 20px;
+  }
+  
+  /* .left-section {
+    text-align: center;
+    margin-top: 150px;
+    margin-left: 30px;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 5px;
+    width: 373px;
+  } */
+  
+  .name-label {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding-top: 10px;
+    padding-right: 20px;
+  }
+  
+  .input-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+  }
+  
+  .name-input{
+    width: 250px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  .meeting-id-input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  
+  .join-meeting {
+    background-color: rgb(122, 72, 138);
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 18px;
+    width: 334px;
+    margin-bottom: 10px;
+  }
+  .join-meeting:hover {
+    background-color: white;
+    color: rgb(122, 72, 138);
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 18px;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .btn {
+    -webkit-border-radius: 6 !important;
+    -moz-border-radius: 6 !important;
+    border-radius: 6px !important;
+    /* -webkit-box-shadow: 3px 4px 12px #666666 !important; */
+    /* -moz-box-shadow: 3px 4px 12px #666666 !important; */
+    /* box-shadow: 3px 4px 12px #666666 !important; */
+    /* color: #79488a !important; */
+    font-family: 'Montserrat', sans-serif !important;
+
+    font-size: 20px !important;
+    background: #ffffff !important;
+    padding: 6px 20px 10px 20px !important;
+    border: solid #79488a 3px !important;
+    text-decoration: none !important;
+  }
+  
+  .btn:hover {
+    background: rgb(229, 171, 249) !important;
+    background-image: -webkit-linear-gradient(top, rgb(229, 171, 249), #ffffff) !important;
+    background-image: -moz-linear-gradient(top, rgb(229, 171, 249), #ffffff) !important;
+    background-image: -ms-linear-gradient(top, rgb(229, 171, 249), #ffffff) !important;
+    background-image: -o-linear-gradient(top, rgb(229, 171, 249), #ffffff) !important;
+    background-image: linear-gradient(to bottom, rgb(229, 171, 249), #ffffff) !important;
+    text-decoration: none !important;
+  }
+  .logout-button{
+    background-color: white;
+    color:rgb(229, 171, 249) ;
+  }
+  .div-image{
+    margin-top: 200px;
+  }
+  .separator {
+    font-size: 16px;
+    margin: 15px 0;
+  }
+  .image{
+    height: 200px;
+    width: 200px;
+  }
+
+  .main{
+    display: flex;
+    flex:1;
+    height: 100%;
+  }
+
+  .left-section, .right-section{
+    flex:1;
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px;
+    width: 50%;
+    padding: 150px;
+  }
+
+  .right-section{
+    border-left: 2px solid purple;
+  }
+
+  .main div h1{
+    border-bottom: 2px dotted purple
+  }

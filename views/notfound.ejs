@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error 404</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif !important;
+            height:100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(236, 73, 236);
+            color: #eeeeee;
+        }
+        .main-container{
+            padding: 20px;
+            width: 400px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            font-size: xx-large;
+            flex-direction: column;
+            text-shadow: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <h1>Error 404</h1>
+        <h3>Page not found</h3>
+        <a href="/"><b>Home</b></a>
+    </div>
+</body>
+<script type="text/javascript">
+    const msg = '<%=msg%>';
+    if (msg) alert(msg);
+</script>
+</html>

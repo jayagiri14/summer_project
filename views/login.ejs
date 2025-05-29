@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BoardMeet</title>
+    <link rel="stylesheet" href="loginregister.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+    <h1 class="gmeet-heading">BOARDMEET</h1>
+    <div class="container-custom">
+      <div class="authentication-form">
+        <h2>LOGIN</h2>
+        <% if (typeof msg !== 'undefined' && msg) { %>
+  <div class="alert alert-info" style="margin-bottom: 15px;">
+    <%= msg %>
+  </div>
+<% } %>
+        <form action="/login" method="POST" class="form-box">
+          <div class="form-group">
+            <div class="textori">
+              <label for="email">Email</label>
+            </div>
+            <input type="text" id="email" name="email" placeholder="Enter your email" required>
+          </div>
+          <div class="form-group">
+            <div class="passwordori">
+              <label for="password">Password</label>
+            </div>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+          </div>
+          <input type="submit" class="submit-button">
+        </form>
+       <div class="register-link">
+          <p>Don't have an account?</p>
+          <a href="/register">Register</a>
+        </div>
+        <div class="google-login" style="margin-top: 20px; text-align: center;">
+          <p>or</p>
+          <a href="/auth/google" class="btn btn-danger" style="background-color: #db4437; color: white;">
+            <img src="https://developers.google.com/identity/images/g-logo.png" alt="Google" style="width:20px; vertical-align:middle; margin-right:8px;">
+            Sign in with Google
+          </a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

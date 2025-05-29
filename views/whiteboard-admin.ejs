@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Board</title>
+    <link rel="stylesheet" href="whiteboard.css">
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <div class="body">
+        <div class="controls-left">
+            <input type="color" id = 'color'>
+            <input type="range" max="20" min="1" id="slider" value="3">
+        </div>
+        <canvas id = 'canvas'>Your browser does not support a canvas.</canvas>
+        <div class="controls-right">
+            <button class="controls-button" onclick="clear_screen()" id = "clear">Clear</button>
+            <a href="" download id="download"><button class="controls-button" onclick="download()">Save</button></a>
+            <button class="controls-button" onclick="copycode()">Copy Board ID</button>
+            <form action="/" method="GET">
+                <button type="submit" class="controls-button">Leave board</button>
+            </form>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+    var canvas = document.getElementById('canvas');
+    var ctx = canvas.getContext('2d');
+    canvas.height = 650;
+    canvas.width = 1000;
+    const roomId = "<%=roomId%>";
+    const sname = "<%=name%>";
+    const socket = io('/');
+    let paint = false;
+    let x;
+    let y;
+    let startX , startY;
+    let queue = [];
+
+    socket.emit('join-board' , roomId , sname);
+
+    ctx.fillStyle = 'white';
+    ctx.fillRect(0 , 0 , canvas.width , canvas.height);
+    ctx.lineCap = 'round';
+
+    socket.emit('join-board' , roomId);
+
+    function startDraw(){
+        paint = true;
+        startX = event.clientX - window.innerWidth / 7;
+        startY = event.clientY - window.innerWidth / 32;
+        event.preventDefault();
+    }
+
+    function endDraw(){
+        paint = false;
+        event.preventDefault();
+    }
+
+    function stopDraw(){
+        paint = false;
+        ctx.closePath();
+    }
+
+    function draw(){
+        if(!paint)return;
+        x = event.clientX - window.innerWidth / 7;
+        y = event.clientY - window.innerWidth / 32;
+        queue.push([startX , startY , x , y , getColor() , getWidth()]);
+        socket.emit("draw" , {startX , startY , x , y , width: getWidth() , color: getColor()});
+        startX = x;
+        startY = y;
+        event.preventDefault();
+    }
+
+    socket.on("ondraw" , ({startX , startY , x , y , width , color}) => {
+        queue.push([startX , startY , x , y , color , width]);
+    });
+
+    socket.on("notify" , (msg) => {
+        const division = document.getElementById("update");
+        //division.innerHTML = `${msg} has joined`;
+    });
+
+    function update(){
+        if (queue.length > 0){
+            ctx.beginPath();
+            const val = queue.shift();
+            ctx.lineWidth = val[5];
+            ctx.strokeStyle = val[4];
+            ctx.moveTo(val[0] , val[1]);
+            ctx.lineTo(val[2] , val[3]);
+            ctx.stroke();
+            ctx.closePath();
+        }
+    }
+
+    function getWidth(){
+        return document.getElementById('slider').value;
+    }
+
+    function getColor(){
+        return document.getElementById('color').value;
+    }
+
+    function clear_screen(){
+        ctx.fillStyle = 'white';
+        ctx.fillRect(0 , 0 , canvas.width , canvas.height);
+        socket.emit("clearscreen");
+    }
+
+    function download(){
+        var img = canvas.toDataURL("image/png");
+        document.getElementById('download').href = img;
+    }
+
+    function copycode(){
+        navigator.clipboard.writeText(roomId);
+    }
+
+    const intervalID = setInterval(update , 1);
+
+    canvas.addEventListener("touchstart" , startDraw, false);
+    canvas.addEventListener("mousedown" , startDraw);
+    canvas.addEventListener("mouseup" , endDraw);
+    canvas.addEventListener("touchend" , endDraw , false);
+    window.addEventListener("mousemove" , draw);
+    canvas.addEventListener("touchmove" , draw , false);
+    window.addEventListener("mouseup" , stopDraw);
+    window.addEventListener("touchend" , stopDraw);
+
+</script>
+</html>
